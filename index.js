@@ -58,6 +58,40 @@ function handleSearchSubmit(event) {
     
     searchCity(searchInput.value)
 }
+function displayForecast (){
+    let forecastElement = document.querySelector("#forecast")
+ 
+    let days = [`Tue`, `Wed`, `Thu`, `Fri`, `Sat`]
+    let forecastHtml = "";
+
+    days.forEach(function(day) {
+        forecastHtml =
+        forecastHtml  + `
+
+<div class="weather-forecast-day">
+<div class="weather-forecast-date">
+    ${day}
+</div>
+
+ <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAVVJREFUaN7tmckNgzAQRV1CSqAEl+ASKIFjjpTgEiiBElICJeTKjXRAB5MZyUgOyoKNx8hkLL1LNv6D8RoFAKpklAiIgAiIgAiIwMsLGxs8rjXSI3cE3nB379cqYdstgIEsMn8I/Qn6vD1UAAMYZAoMvoa+r7ML4EWbncHXNNkEGMLvkggSYAy/ULMJ4I9XEZ0VIjp3xSVwYw6/cEsu4EYcyIhOLdBnFuhTC3DXPs3SgzeLD3TdcRw1Yj10sABz+VBgsxrpLgSG7RB4Qxcq0DKGp6AtMnsBB3e34QttiIBlEjAuPEQwhQh0HHff1fgcKQBHCtCA0GCIKja8/yToKeYsoaXuzYY6D6HL1YlpWGwSBvfR3MPo7rr/geWeyHonYJkw3EsJqxjafyzmil9On2JDU/yW8hSb+lMcq5ziYCvB0eJ0+NFiMYe78v+ACIiACIiACJTEEyDCTi8sMWUSAAAAAElFTkSuQmCC" alt="" width="46">
+<br class="weather-forecast-temperature">
+<span class="weather-forecast-temperature-max">
+18°
+</span>
+
+<span class="weather-forecast-temperature-min">
+20°
+</span>
+</div>
+
+</div>
+
+`;
+
+    });
+forecastElement.innerHTML = forecastHtml;
+
+}
 function searchCity(city) {
     //event.preventDefault();
     //let searchInputElement = document.querySelector("#search-input");
@@ -74,4 +108,6 @@ function searchCity(city) {
 
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
-searchCity("Carletonville")
+searchCity("Carletonville");
+
+displayForecast();
