@@ -89,7 +89,8 @@ footer{
 .weather-forecast{
     margin-top: 20px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    
     
 }
 .weather-forecast-date{
@@ -98,11 +99,22 @@ footer{
 }
 .weather-forecast-temperature{
     font-size: 16px;
+    display: block;
+    text-align: center;
 }
 .weather-forecast-temperature-max{
     color: rgb(82, 82, 242)  ;
+    
 }
 .weather-forecast-temperature-min{
 opacity: 0.6;
 color:rgb(82, 82, 242)  ;
+}
+.weather-forecast-icon{
+    width: 110px;
+    height: 90px;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    
 }

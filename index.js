@@ -66,37 +66,48 @@ function getForecast(city){
 //console.log(apiUrl);
 axios.get(apiUrl).then(displayForecast);
 }
+
+function formatDay(timeStamp){
+    let date = new Date(timeStamp * 1000);
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+
+    return days[date.getDay()];
+}
+
 function displayForecast (response){
     console.log(response.data);
     let forecastElement = document.querySelector("#forecast")
  
-    let days = [`Tue`, `Wed`, `Thu`, `Fri`, `Sat`]
+    //let days = [`Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat`, `Sun`]
     let forecastHtml = "";
 
-    days.forEach(function(day) {
+    response.data.daily.forEach(function(day, index) { 
+        if (index <  5 ){
         forecastHtml =
         forecastHtml  + `
 
 <div class="weather-forecast-day">
 <div class="weather-forecast-date">
-    ${day}
+    ${formatDay(day.time)}
 </div>
 
- <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAVVJREFUaN7tmckNgzAQRV1CSqAEl+ASKIFjjpTgEiiBElICJeTKjXRAB5MZyUgOyoKNx8hkLL1LNv6D8RoFAKpklAiIgAiIgAiIwMsLGxs8rjXSI3cE3nB379cqYdstgIEsMn8I/Qn6vD1UAAMYZAoMvoa+r7ML4EWbncHXNNkEGMLvkggSYAy/ULMJ4I9XEZ0VIjp3xSVwYw6/cEsu4EYcyIhOLdBnFuhTC3DXPs3SgzeLD3TdcRw1Yj10sABz+VBgsxrpLgSG7RB4Qxcq0DKGp6AtMnsBB3e34QttiIBlEjAuPEQwhQh0HHff1fgcKQBHCtCA0GCIKja8/yToKeYsoaXuzYY6D6HL1YlpWGwSBvfR3MPo7rr/geWeyHonYJkw3EsJqxjafyzmil9On2JDU/yW8hSb+lMcq5ziYCvB0eJ0+NFiMYe78v+ACIiACIiACJTEEyDCTi8sMWUSAAAAAElFTkSuQmCC" alt="" width="46">
+ <div >
+ <img src="${day.condition.icon_url}"class ="weather-forecast-icon"/>
+ </div>
 <br class="weather-forecast-temperature">
 <span class="weather-forecast-temperature-max">
-18°
+${Math.round(day.temperature.maximum)}°
 </span>
 
 <span class="weather-forecast-temperature-min">
-20°
+${Math.round(day.temperature.minimum)}°
 </span>
 </div>
 
 </div>
 
 `;
-
+        }
     });
 forecastElement.innerHTML = forecastHtml;
 
