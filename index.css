@@ -116,7 +116,10 @@ color:rgb(82, 82, 242)  ;
     display: block;
     margin: 0 auto;
     padding: 0;
-
     
-    
+}
+@media (max-width: 576px){
+    .weather-app{
+        width: 250px;
+    }
 }
